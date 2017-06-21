@@ -1,24 +1,24 @@
-package net.study2;
+package net.study2.user;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-
-@WebServlet("/hello")
-public class HelloWorldServlet extends HttpServlet {
+@WebServlet("/users/logout")
+public class LogoutServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		HttpSession session = req.getSession();
 		
-		String name = req.getParameter("name");
-		name = req.toString();
-		PrintWriter out = resp.getWriter();		
-		out.print(name + " Hello World Servlet");
+		session.removeAttribute("userId");
+
+		resp.sendRedirect("/");		
 	}
 }
