@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/users/save")
-public class SaveUserServlet extends HttpServlet {
-	
+@WebServlet("/users/update")
+public class updateUserServelt extends HttpServlet {
+
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -23,12 +23,14 @@ public class SaveUserServlet extends HttpServlet {
 		User user = new User(userId, password, name, email);
 		UserDAO userDao = new UserDAO();
 		try {
-			userDao.insert(user);
+			userDao.updateUser(user);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		resp.sendRedirect("/");
+		resp.sendRedirect("/");		
+		
 	}
+	
 }
